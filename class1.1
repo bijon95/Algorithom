@@ -1,0 +1,44 @@
+#include<stdio.h>
+int A[10][10];
+int main()
+{
+int i,j,a,b,x,y;
+int node,adge,temp=0;
+scanf("%d %d",&node,&adge);
+
+for(i=1;i<=adge;i++){
+scanf("%d %d",&a,&b);
+A[a][b]=1;
+A[b][a]=1;
+
+
+}
+for(i=1;i<=node;i++){
+for(j=1;j<=node;j++){
+printf("%d ",A[i][j]);}
+printf("\n");
+
+}
+
+for(i=1;i<=node;i++){
+for(j=1;j<=node;j++){
+if(A[j][i]==1)
+temp++;
+
+
+}
+printf("\n %d = %d",i,temp);
+temp=0;
+}
+}
+/*
+5
+7
+1 2
+1 5
+1 4
+4 5
+5 3
+2 3
+2 5
+*/
