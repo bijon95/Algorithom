@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+using namespace std;
+int matrix[10][10];
+int indergree[50];
+int temp=0;
+int main()
+{
+    queue<int>Q;
+    int i,j,a,b;
+    int node,edge;
+    int dist[100];
+    int source;
+
+    printf("Enter node & edge: ");
+    scanf("%d %d",&node,&edge);
+    for(i=1; i<=edge; i++)
+    {
+        scanf("%d %d",&a,&b);
+        matrix[a][b]=1;
+        //matrix[b][a]=1;
+    }
+
+    for(i=1; i<=node; i++)
+    {
+        for(j=1; j<=node; j++)
+        {
+            printf("%d ",matrix[i][j]);
+        }
+        printf("\n");
+    }
+/*
+    for(i=0; i<=50; i++)
+    {
+        dist[i]=-1;
+    }
+    scanf("%d",&source);
+
+    dist[source]=0;
+
+    Q.push(source);
+    while(Q.size()>=1)
+    {
+        int front = Q.front();
+        Q.pop();
+        for(i=1; i<=node; i++)
+        {
+            if(matrix[front][i]==1&&dist[i]==-1)
+            {
+             Q.push(i);
+             dist[i]=dist[front]+1;
+            }
+        }
+
+    }
+
+    for(i=1;i<=5;i++){
+    cout<<dist[i]<<" ";
+    }
+    */
+    for(i=1;i<=node;i++){
+        for(j=1;j<=node;j++){
+            if(matrix[j][i]==1)
+         temp++;
+    }
+
+    indergree[i]=temp;
+      temp=0;
+}
+
+for(i=1;i<=node;i++){
+       printf("\n %d = %d",i,indergree[i]);
+}
+
+    return 0;
+}
+
