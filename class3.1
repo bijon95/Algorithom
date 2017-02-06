@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int matrix[10][10];
-int indegree[50];
+int indegree[50],visit[50];
 int temp=0;
 int main()
 {
@@ -24,79 +24,43 @@ int main()
     {
         for(j=1; j<=node; j++)
         {
-            printf("%d ",matrix[i][j]);
-        }
-        printf("\n");
-    }
-    /*
-        for(i=0; i<=50; i++)
-        {
-            dist[i]=-1;
-        }
-        scanf("%d",&source);
-
-        dist[source]=0;
-
-        Q.push(source);
-        while(Q.size()>=1)
-        {
-            int front = Q.front();
-            Q.pop();
-            for(i=1; i<=node; i++)
-            {
-                if(matrix[front][i]==1&&dist[i]==-1)
-                {
-                 Q.push(i);
-                 dist[i]=dist[front]+1;
-                }
-            }
-
-        }
-
-        for(i=1;i<=5;i++){
-        cout<<dist[i]<<" ";
-        }
-        */
-    for(i=1; i<=node; i++)
-    {
-        for(j=1; j<=node; j++)
-        {
             if(matrix[j][i]==1)
                 temp++;
         }
-
         indegree[i]=temp;
         temp=0;
     }
 
+    printf("TOPOLOGICAL ORDERING : ");
+
+
     for(i=1; i<=node; i++)
     {
-        printf(" %d",indegree[i]);
-    }
-     printf("\n");
-    for(i=1; i<=node; i++)
-    {
-        if(indegree[i]==0)
+        if( indegree[i]==0 and visit[i]==0)
         {
-
-                for(j=1; j<=node; j++)
+            for(k=1; k<=node; k++)
+            {
+                printf("%d ",indegree[k]);
+            }
+            printf("\n");
+            printf("Order : %d\n",i);
+            visit[i]=1;
+            for(j=1; j<=node; j++)
+            {
+                if(matrix[i][j]==1)
                 {
-                    if(matrix[i][j]==1){
                     indegree[j]--;
-                    }
-
                 }
-                 for(k=1;k<=node;k++){
-                printf(" %d",indegree[k]);
-             }
-             printf("\n");
-                }
+            }
 
+            i=1;
 
-
-
+        }
 
     }
-    return 0;
-}
 
+
+
+    return 0 ;
+
+}
