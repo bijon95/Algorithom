@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int matrix[50][50];
+int main()
+{
+
+    int i,j,a,b,c,u,v,inf=1<<28;
+    int node,edge,indegree;
+    printf("Enter node & edge: ");
+    scanf("%d %d",&node,&edge);
+    for(i=1; i<=edge; i++)
+    {
+        scanf("%d %d %d",&a,&b,&c);
+        matrix[a][b]=c;
+
+
+        //matrix[b][a]=1;
+    }
+    for( i = 1 ; i <= node ; i++ )
+    {
+        for( j = 1 ; j <= node ; j++ )
+        {
+            if( matrix[i][j]==0 ) matrix[i][j] = (1<<28);
+        }
+    }
+
+    for(i=1; i<=node; i++)
+    {
+        for(j=1; j<=node; j++)
+        {
+            printf("%d ",matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+
+    int dist[100];
+    // int cost[100];
+    int source;
+    for(i=1; i<=node; i++)
+    {
+        dist[i]=(1<<28);
+    }
+
+
+    cin>>source;
+    queue<int>Q;
+    dist[source]=0;
+    Q.push(source);
+
+    while(Q.size()>=1)
+    {
+        int u=Q.front();
+        Q.pop();
+        for( int v=1; v<=node; v++ )
+        {
+            if ( dist[u] + matrix[u][v] < dist[v] )
+            {
+                cout<<"U = "<<u<<" V = "<<v<<endl;
+                getchar();
+                dist[v] = dist[u] + matrix[u][v];
+                Q.push(v);
+                cout<<"Dist : "<<" U : "<<dist[u]<<" cost[U][V]: "<<matrix[u][v]<<" V : "<<dist[v]<<endl<<endl;
+
+            }
+        }
+    }
+    for(i=1; i<=node; i++)
+        cout<<dist[i]<<" ";
+
+
+
+
+    return 0;
+
+}
