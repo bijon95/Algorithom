@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int arwt[5]= {1,7,4,3,4};
+int price[5]= {120,400,280,150,200};
+int dp[100][100];
+
+
+int n=5,cap=10,tempWT,tempPrice;
+
+int rec(int now,int wt)
+{
+    if(now==n)   return 0; /// check whether all product has been checked or not
+    if(wt==cap) return 0;  /// maximum capacity check
+    if( dp[now][wt] != -1 ) return dp[now][wt];
+    int p1=0, p2=0;
+    if(wt+arwt[now]<=cap) p1=rec(now+1,wt+arwt[now])+price[now];
+    p2= rec(now+1,wt);
+
+    return dp[now][wt] = max(p1,p2);
+
+}
+int main()
+{
+    memset(dp,-1,sizeof(int));
+    cout<<rec(0,0)<<endl;
+
+}
