@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+
+    int n,StartTime[20],EndTime[20],index;
+    cin>>n;
+    for(int i=0; i<n; i++)
+    {
+        cin>>StartTime[i]>>EndTime[i];
+
+    }
+
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i; j<n; j++)
+        {
+            if(EndTime[i]>EndTime[j])
+            {
+                int temp = StartTime[i];
+                StartTime[i] = StartTime[j];
+                StartTime[j] = temp;
+
+                temp = EndTime[i];
+                EndTime[i] = EndTime[j];
+                EndTime[j] = temp;
+
+
+            }
+
+        }
+    }
+    int cnt=0;
+    for(int i=0; i<n; i++)
+    {
+
+        if(i==0)
+        {
+            index=EndTime[0];
+            cout<<StartTime[i]<<"-->"<<EndTime[i]<<endl;
+            cnt++;
+        }
+        else
+        {
+            if(index<StartTime[i])
+            {
+                index=EndTime[i];
+                cout<<StartTime[i]<<"-->"<<EndTime[i]<<endl;
+                cnt++;
+            }
+
+        }
+
+    }
+    cout<<"Total Task: "<<cnt;
+}
+/*
+
+5
+1 3
+2 4
+7 9
+3 5
+4 6
+
+*/
